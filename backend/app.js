@@ -8,32 +8,46 @@ import cors from "cors";
 import { errorMiddleware } from "./middlewares/error.js";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
+import path from "path"; // Import path module
+import { fileURLToPath } from "url"; // Import fileURLToPath to handle __dirname
 
 const app = express();
 config({ path: "./config/config.env" });
 
+// Get the current directory equivalent of __dirname in ES modules
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// CORS configuration
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL],
-    method: ["GET", "POST", "DELETE", "PUT"],
-    credentials: true,
+    origin: [process.env.FRONTEND_URL], // Ensure this is correctly set in your .env file
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true, // Allows cookies to be sent with requests
   })
 );
 
-app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Middleware
+app.use(cookieParser()); // Parses cookies (used for JWT token)
+app.use(express.json()); // Parses incoming JSON requests
+app.use(express.urlencoded({ extended: true })); // Parses URL-encoded data
 
+// File upload configuration
 app.use(
   fileUpload({
     useTempFiles: true,
-    tempFileDir: "/tmp/",
+    tempFileDir: path.join(__dirname, "tmp"), // Now works correctly with ES modules
   })
 );
-app.use("/api/v1/user", userRouter);
-app.use("/api/v1/job", jobRouter);
-app.use("/api/v1/application", applicationRouter);
+
+// Define routes
+app.use("/api/v1/user", userRouter); // User-related routes (register, login, etc.)
+app.use("/api/v1/job", jobRouter); // Job-related routes
+app.use("/api/v1/application", applicationRouter); // Application-related routes
+
+// Connect to the database
 dbConnection();
 
+// Error handling middleware (should be last)
 app.use(errorMiddleware);
+
 export default app;
