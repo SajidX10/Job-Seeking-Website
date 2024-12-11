@@ -27,11 +27,11 @@ const applicationSchema = new mongoose.Schema({
   },
   resume: {
     public_id: {
-      type: String, 
+      type: String,
       required: true,
     },
     url: {
-      type: String, 
+      type: String,
       required: true,
     },
   },
@@ -59,6 +59,21 @@ const applicationSchema = new mongoose.Schema({
       required: true,
     },
   },
+  status: {
+    type: String,
+    enum: ["Pending", "Accepted", "Rejected", "Interview Scheduled"],
+    default: "Pending",
+  },
+  jobId: { // Adding jobId field from the second snippet
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Job",
+    required: true, // Assuming jobId is necessary for applications
+  },
+  appliedAt: { // Adding appliedAt field from the second snippet
+    type: Date,
+    default: Date.now,
+  }
 });
 
+// Exporting the Application model
 export const Application = mongoose.model("Application", applicationSchema);
