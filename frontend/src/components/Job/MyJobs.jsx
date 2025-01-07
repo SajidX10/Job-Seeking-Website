@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { Context } from "../../main";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // Import Link from react-router-dom
 
 const MyJobs = () => {
   const [myJobs, setMyJobs] = useState([]);
@@ -34,7 +34,6 @@ const MyJobs = () => {
 
   //Function For Enabling Editing Mode
   const handleEnableEdit = (jobId) => {
-    //Here We Are Giving Id in setEditingMode because We want to enable only that job whose ID has been send.
     setEditingMode(jobId);
   };
 
@@ -75,7 +74,6 @@ const MyJobs = () => {
   };
 
   const handleInputChange = (jobId, field, value) => {
-    // Update the job object in the jobs state with the new value
     setMyJobs((prevJobs) =>
       prevJobs.map((job) =>
         job._id === jobId ? { ...job, [field]: value } : job
@@ -113,7 +111,6 @@ const MyJobs = () => {
                           />
                         </div>
                         <div>
-                          {" "}
                           <span>Country:</span>
                           <input
                             type="text"
@@ -247,7 +244,6 @@ const MyJobs = () => {
                           </span>
                         </div>
                         <div>
-                          {" "}
                           <span>Expired:</span>
                           <select
                             value={element.expired}
@@ -337,6 +333,12 @@ const MyJobs = () => {
                       >
                         Delete
                       </button>
+                      {/* ========================= */}
+                      {/* New Link to View Matches */}
+                      <Link to={`/jobs/${element._id}/matches`} className="view_matches_btn">
+                        View Matches
+                      </Link>
+                      {/* ========================= */}
                     </div>
                   </div>
                 ))}

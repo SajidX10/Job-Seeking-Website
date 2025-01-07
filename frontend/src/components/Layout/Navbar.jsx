@@ -66,7 +66,13 @@ const Navbar = () => {
           ) : (
             <></>
           )}
-
+          {/* COMMAND: Add link to Job Recommendations */}
+          <li>
+            <Link to="/recommendations" onClick={() => setShow(false)}>
+              RECOMMENDATIONS
+            </Link>
+          </li>
+          {/* COMMAND: End of new link */}
           <button onClick={handleLogout}>LOGOUT</button>
         </ul>
         <div className="hamburger">
