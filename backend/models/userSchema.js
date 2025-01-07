@@ -73,4 +73,7 @@ userSchema.methods.getJWTToken = function () {
   );
 };
 
+// =========================
+// Exporting the User model as a named export
 export const User = mongoose.model("User", userSchema);
+// =========================

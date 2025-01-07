@@ -137,4 +137,15 @@ export const getSingleJob = catchAsyncErrors(async (req, res, next) => {
   } catch (error) {
     return next(new ErrorHandler(`Invalid ID / CastError`, 404));
   }
+const jobSchema = new mongoose.Schema({
+  tags: {
+    type: [String], // Array of strings for job tags
+    required: true,
+},
+jobType: {
+    type: String,
+    enum: ['full-time', 'part-time', 'remote'], // Example job types
+    required: true,
+},
+});
 });
