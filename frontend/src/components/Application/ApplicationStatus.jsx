@@ -9,7 +9,7 @@ const ApplicationStatus = ({ application, onStatusUpdate }) => {
   const handleStatusUpdate = async () => {
     try {
       const response = await axios.patch(
-        'http://localhost:4000/api/v1/application/update-status',
+        'https://job-seeking-website-c1ds.onrender.com/api/v1/application/update-status',
         {
           applicationId: application._id,
           status,

@@ -15,7 +15,7 @@ const NotificationCenter = () => {
   const fetchNotifications = async () => {
     try {
       const response = await axios.get(
-        'http://localhost:4000/api/v1/application/notifications',
+        'https://job-seeking-website-c1ds.onrender.com/api/v1/application/notifications',
         { withCredentials: true }
       );
       setNotifications(response.data.notifications);
@@ -29,7 +29,7 @@ const NotificationCenter = () => {
   const markAsRead = async (applicationId, notificationIds) => {
     try {
       await axios.patch(
-        'http://localhost:4000/api/v1/application/notifications/mark-read',
+        'https://job-seeking-website-c1ds.onrender.com/api/v1/application/notifications/mark-read',
         { applicationId, notificationIds },
         { withCredentials: true }
       );

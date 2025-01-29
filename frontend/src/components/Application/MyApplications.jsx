@@ -25,7 +25,7 @@ const MyApplications = () => {
         : "jobseeker/getall";
       
       const response = await axios.get(
-        `http://localhost:4000/api/v1/application/${endpoint}`,
+        `https://job-seeking-website-c1ds.onrender.com/api/v1/application/${endpoint}`,
         { withCredentials: true }
       );
       setApplications(response.data.applications);
@@ -48,7 +48,7 @@ const MyApplications = () => {
   const deleteApplication = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/v1/application/delete/${id}`,
+        `https://job-seeking-website-c1ds.onrender.com/api/v1/application/delete/${id}`,
         { withCredentials: true }
       );
       toast.success(response.data.message);

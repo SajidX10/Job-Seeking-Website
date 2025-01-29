@@ -10,7 +10,7 @@ const Recommendations = () => {
     useEffect(() => {
         const fetchRecommendations = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/api/v1/recommendations', { // Ensure the full URL is used
+                const response = await axios.get('https://job-seeking-website-c1ds.onrender.com/api/v1/recommendations', { // Ensure the full URL is used
                     withCredentials: true, // Include credentials for CORS
                 });
 

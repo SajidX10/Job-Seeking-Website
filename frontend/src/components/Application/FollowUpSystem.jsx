@@ -14,7 +14,7 @@ const FollowUpSystem = ({ application, onFollowUp }) => {
 
     try {
       const response = await axios.post(
-        'http://localhost:4000/api/v1/application/send-followup',
+        'https://job-seeking-website-c1ds.onrender.com/api/v1/application/send-followup',
         {
           applicationId: application._id,
           message

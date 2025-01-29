@@ -26,7 +26,7 @@ const App = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:4000/api/v1/user/getuser",
+          "https://job-seeking-website-c1ds.onrender.com/api/v1/user/getuser",
           { withCredentials: true }
         );
         console.log("Fetched User:", response.data.user); // Debugging user fetching

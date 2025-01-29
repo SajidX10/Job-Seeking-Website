@@ -13,7 +13,7 @@ const InterviewScheduler = ({ application, onSchedule }) => {
   const handleSchedule = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:4000/api/v1/application/schedule-interview',
+        'https://job-seeking-website-c1ds.onrender.com/api/v1/application/schedule-interview',
         {
           applicationId: application._id,
           ...interviewData
